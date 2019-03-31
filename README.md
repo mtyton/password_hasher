@@ -3,7 +3,7 @@ Encrypting and decrypting passwords using RSA algorithm, and peewee library to s
 Simple in use, takes paramtere "get" or "save", after that he wile show you the password or save it to the db
 # How does it works
   ## Main.py
-   ### checking i encrypting keys exists, if they aren't the program will create them and save in txt file
+   ### Checking if encrypting keys exists, if they aren't the program will create them and save in txt file
     if not EnKeyes.check_if_key_exists():
         pr_numb, sec_pr_numb = hash.find_primal_numbs()
         en_key = EnKeyes(pr_numb, sec_pr_numb)
@@ -14,9 +14,9 @@ Simple in use, takes paramtere "get" or "save", after that he wile show you the 
     else:
         print("reading keys")
         private_key, public_key = EnKeyes.read_keys()
-  ### after that we parse args
+  ### After that we parse args
     args = parser.parse_args()
-  ### finally we decide wheter we save or get the password from the database
+  ### Finally we decide wheter we save or get the password from the database
     if args.action == "save":
         ...
 
