@@ -14,7 +14,7 @@ Simple in use, takes paramtere "get" or "save", after that he wile show you the 
     else:
         print("reading keys")
         private_key, public_key = EnKeyes.read_keys()
-  ### After that we parse args
+  ### After we parse args
     args = parser.parse_args()
   ### Finally we decide wheter we save or get the password from the database
     if args.action == "save":
@@ -27,7 +27,7 @@ Simple in use, takes paramtere "get" or "save", after that he wile show you the 
   more soon...
   
 # Work still in progress, TODO list:
-- reapir error while randing primal numbs
+- repair error while randing primal numbs
 - better way of keeping keyes
-- write some test
+- write some tests
 - password actualization and checking
