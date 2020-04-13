@@ -1,5 +1,5 @@
 import unittest
-from primal import Rabin_Miller
+from GUI.utils.primal import Rabin_Miller
 
 
 class TestRabinMiller(unittest.TestCase):

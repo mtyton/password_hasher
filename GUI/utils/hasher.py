@@ -1,12 +1,8 @@
-import base64
-import os
 from random import randrange
-from passlib.hash import sha256_crypt
 from Crypto.Cipher import AES
 from peewee import SqliteDatabase
-from db import Password
-from primal import Rabin_Miller
-from random import random
+from GUI.utils.db import Password
+from GUI.utils.primal import Rabin_Miller
 
 db = SqliteDatabase('passwords.db')
 db.connect()
@@ -49,7 +45,7 @@ class Hasher:
                 new_word += char
             except ValueError:
                 pass
-        print(new_word)
+        return new_word
 
     def save_password(self, hashed_password, website):
         p = Password()
@@ -57,7 +53,13 @@ class Hasher:
         p.password = ""
         for h in hashed_password:
             p.password += "{}_".format(h)
-        print(p.password)
+        p.save()
+
+    def update_password(self, website, hashed_password):
+        p = Password.get(Password.website_name == website)
+        p.password = ""
+        for h in hashed_password:
+            p.password += "{}_".format(h)
         p.save()
 
     def read_password(self, website):
@@ -65,3 +67,4 @@ class Hasher:
         # print(p[0].password)
         arrayed_pass = p[0].password.split("_")
         return arrayed_pass
+
