@@ -21,3 +21,15 @@ class Password(Model):
         for p in passwords:
             websites.append(p.website_name)
         return websites
+
+
+class KeyPair(Model):
+    key_password = CharField(255, unique=True)
+    public_key = CharField(255, unique=True)
+    private_key = CharField(255, unique=True)
+
+    def save_key_pair(self, password, public_key, private_key):
+        pass
+
+    def get_key_pair(self):
+        pass

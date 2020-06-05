@@ -2,6 +2,7 @@ from random import random
 from random import randrange
 import os
 
+
 class EnKeyes:
     def __init__(self, pr_numb, sec_pr_numb):
         self.pr_numb = pr_numb
@@ -76,7 +77,7 @@ class EnKeyes:
         return self.private_key, self.public_key
 
     def save_keys(self, public_key, private_key):
-        file = open("keys.txt", "w")
+        file = open(".keys", "w")
         file.write("{} {} ".format(public_key[0], public_key[1]))
         file.write("\n")
         file.write("{} {} ".format(private_key[0], private_key[1]))
@@ -84,7 +85,7 @@ class EnKeyes:
 
     @staticmethod
     def read_keys():
-        file = open("keys.txt", "r")
+        file = open(".keys", "r")
         line = file.readline().split(" ")
         public = [int(line[0]), int(line[1])]
         line = file.readline().split(" ")
@@ -94,7 +95,7 @@ class EnKeyes:
 
     @staticmethod
     def check_if_key_exists():
-        file_checker = os.path.isfile("keys.txt")
+        file_checker = os.path.isfile(".keys")
         if file_checker:
             return True
         else:

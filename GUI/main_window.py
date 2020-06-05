@@ -5,9 +5,21 @@ from GUI.utils.main import excute
 from GUI.utils.db import Password
 
 
-class PassWindow(Gtk.Window):
+class PassApp(Gtk.Application):
     def __init__(self):
-        Gtk.Window.__init__(self, title="ComPass")
+        Gtk.Application.__init__(self,)
+
+    def do_activate(self):
+        window = PassWindow(self)
+        window.show_all()
+
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+
+
+class PassWindow(Gtk.ApplicationWindow):
+    def __init__(self, app):
+        Gtk.Window.__init__(self, title="ComPass", application=app)
         notebook = Gtk.Notebook()
         self.set_default_size(600, 600)
         notebook.append_page(self.get_save_notebook())
@@ -49,15 +61,12 @@ class PassWindow(Gtk.Window):
         hb = Gtk.HBox()
         web_label = Gtk.Label("Website/program: ")
         box = self.get_websites_combo()
-        load_button = Gtk.Button(label="load")
         copy_button = Gtk.Button(label="copy")
-        load_button.connect("clicked", excute, "get", "facebook-test", None)
         copy_button.connect("clicked", self.copy_click, "copy", box)
         hb.add(web_label)
         hb.add(box)
         vb.add(hb)
         hb = Gtk.HBox()
-        hb.add(load_button)
         hb.add(copy_button)
         vb.add(hb)
         password_output = Gtk.Entry()
